@@ -1,15 +1,20 @@
-package com.froyo;
+package com.froyo.utils;
 
-import org.apache.commons.io.IOUtils;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import java.io.*;
+public class CommandRunner {
 
-public class QueueLister {
+    public CommandRunner() {
 
-    public static void main(String[] args) {
+    }
+
+    public void run(String command) {
 
         try {
-            Process proc = Runtime.getRuntime().exec("rabbitmqadmin get queue=" + Queues.QUEUE_NAME + " requeue=false");
+            Process proc = Runtime.getRuntime().exec(command);
 
             InputStream inputStream = proc.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
